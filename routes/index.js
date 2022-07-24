@@ -1,5 +1,6 @@
 const ProductController = require("../controllers/ProductController");
 const CategoryController = require("../controllers/CategoryController");
+const OrderController = require("../controllers/OrderController");
 
 module.exports = (app) => {
     app.route("/products/top-promotions-products").get(
@@ -16,4 +17,8 @@ module.exports = (app) => {
     app.route("/products").get(ProductController.get);
     app.route("/products/:productId").get(ProductController.detail);
     app.route("/categories").get(CategoryController.get);
+
+    app.route("/orders/total-orders").get(
+        OrderController.getCountOrderByStatus
+    );
 };

@@ -1,3 +1,10 @@
 const ITEM_PER_PAGE = 50;
 const MAX_TOP_SELLING_PRODUCT = 5;
-module.exports = { ITEM_PER_PAGE, MAX_TOP_SELLING_PRODUCT };
+const ORDER_SUCCESS_STATUS = "success";
+const ORDER_PENDING_STATUS = "pending";
+module.exports = {
+    ITEM_PER_PAGE,
+    MAX_TOP_SELLING_PRODUCT,
+    ORDER_SUCCESS_STATUS,
+    ORDER_PENDING_STATUS,
+};
