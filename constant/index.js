@@ -1,0 +1,3 @@
+const ITEM_PER_PAGE = 50;
+const MAX_TOP_SELLING_PRODUCT = 5;
+module.exports = { ITEM_PER_PAGE, MAX_TOP_SELLING_PRODUCT };
