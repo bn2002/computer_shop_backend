@@ -57,6 +57,43 @@ async function getTopPromotionsProducts(req, res) {
         });
     }
 }
-exports.detail = (req, res) => {};
 
-module.exports = { get, getTopSellingProducts, getTopPromotionsProducts };
+async function detail(req, res) {
+    let result = await Products.getDetailProduct(req.params.productId).catch(
+        (err) => {
+            serverError(res, err);
+        }
+    );
+
+    if (result) {
+        return res.json({
+            status: true,
+            data: result,
+        });
+    }
+    res.json({
+        status: false,
+        message: "Sản phẩm này không tồn tại",
+    });
+}
+
+async function getTotalProducts(req, res) {
+    let result = await Products.getTotalProducts(req.query.category).catch(
+        (err) => {
+            serverError(res, err);
+        }
+    );
+
+    return res.json({
+        status: true,
+        data: result,
+    });
+}
+
+module.exports = {
+    get,
+    getTopSellingProducts,
+    getTopPromotionsProducts,
+    detail,
+    getTotalProducts,
+};

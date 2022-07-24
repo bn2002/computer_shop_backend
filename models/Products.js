@@ -71,9 +71,33 @@ async function getTopPromotionsProducts() {
     return result.rows;
 }
 
+async function getDetailProduct(productId) {
+    let query = `SELECT * FROM ${table} WHERE product_id = $1`;
+    let result = await db.query(query, [productId]);
+    if (result.rowCount > 0) {
+        return result.rows[0];
+    }
+
+    return false;
+}
+
+async function getTotalProducts(category) {
+    let query = ` SELECT count(product_id) as count FROM ${table} `;
+    let result;
+    if (category) {
+        query += ` WHERE category_id = $1 `;
+        result = await db.query(query, [category]);
+    } else {
+        result = await db.query(query);
+    }
+
+    return parseInt(result.rows[0].count);
+}
 module.exports = {
     get,
     getCountProduct,
     getTopSellingProducts,
     getTopPromotionsProducts,
+    getDetailProduct,
+    getTotalProducts,
 };
